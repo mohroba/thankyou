@@ -2,7 +2,7 @@
 if (typeof web3 !== "undefined") {
   // Use Mist/MetaMask's provider
   web3 = new Web3(window.ethereum);
-  await window.ethereum.enable();
+  window.ethereum.enable();
 } else {
   console.log("No web3? You should consider trying MetaMask!");
   // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
