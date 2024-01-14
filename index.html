@@ -1,162 +1,106 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>تبریک</title>
-    <style>
-        body {
-            font-family: 'Vazir', sans-serif;
-            text-align: center;
-            background-color: #f0f0f0;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .message {
-            font-size: 24px;
-            line-height: 1.6;
-            min-height: 20vh;
-            direction: rtl;
-        }
-        #particles-js {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-    </style>
-    <link href="https://cdn.rawgit.com/rastikerdar/vazir-font/v21.2.1/dist/font-face.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My NFT Marketplace</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include custom CSS for dark mode, transitions, and animations -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="particles-js"></div>
-    <div class="container">
-        <div class="message">            
-            <h1>تبریک</h1>            
-            <p>
-                ثبت نام شما که کامل شده،با شما تماس میگیریم جهت مصاحبه حضوری  
-                😉
-            </p>          
+    <div class="container-fluid">
+        <!-- Header -->
+        <header class="text-center mt-5">
+            <h1 class="text-light">Become Black Arrow</h1>
+        </header>
+
+        <div class="container mt-4">
+            <!-- Card with Tabs -->
+            <div class="card">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs" id="tab-navigation">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="user-info-tab" data-toggle="tab" href="#user-info-pane">User Info</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="buy-nft-tab" data-toggle="tab" href="#buy-nft-pane">Buy NFT</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="withdraw-funds-tab" data-toggle="tab" href="#withdraw-funds-pane">Withdraw Funds</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="generate-referral-code-tab" data-toggle="tab" href="#generate-referral-code-pane">Generate Referral Code</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content" id="tab-content">
+                        <!-- User Info Tab Pane -->
+                        <div class="tab-pane fade show active" id="user-info-pane">
+                            <h2 class="text-light">User Information</h2>
+                            <p class="text-light">Wallet Status: <span id="wallet-status">Not Connected</span></p>
+                            <p class="text-light">Total Minted Tokens: <span id="total-minted-tokens"></span></p>
+                            <!-- <p class="text-light">Total Referrals: <span id="total-referrals"></span></p> -->
+                            <!-- <p class="text-light">Total Referred Tokens Minted: <span id="total-referred-tokens"></span></p> -->
+                        </div>
+
+                        <!-- Buy NFT Tab Pane -->
+                        <div class="tab-pane fade" id="buy-nft-pane">
+                            <h2 class="text-light">Buy NFT</h2>
+                            <form id="buy-nft-form">
+                                <!-- Input fields for x, y, z, arrow, and referrer -->
+                                <div class="form-group">
+                                    <label for="x" class="text-light">X:</label>
+                                    <input type="number" class="form-control" id="x" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="y" class="text-light">Y:</label>
+                                    <input type="number" class="form-control" id="y" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="z" class="text-light">Z:</label>
+                                    <input type="number" class="form-control" id="z" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="arrow" class="text-light">Arrow:</label>
+                                    <input type="number" class="form-control" id="arrow" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="referrer" class="text-light">Referrer:</label>
+                                    <input type="text" class="form-control" id="referrer">
+                                </div>
+                                <button type="submit" class="btn btn-primary" id="buy-button">Buy NFT</button>
+                                <!-- Spinner for loading -->
+                                <div class="spinner-border text-primary" role="status" id="buy-spinner">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Withdraw Funds Tab Pane -->
+                        <div class="tab-pane fade" id="withdraw-funds-pane">
+                            <h2 class="text-light">Withdraw Funds</h2>
+                            <button class="btn btn-primary" id="withdraw-funds">Withdraw Funds</button>
+                        </div>
+
+                        <!-- Generate Referral Code Tab Pane -->
+                        <div class="tab-pane fade" id="generate-referral-code-pane">
+                            <h2 class="text-light">Referral Code</h2>
+                            <p class="text-light">Your Referral Code: <span id="referral-code"></span></p>
+                            <button class="btn btn-primary" id="generate-referral-code">Copy Your Link</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        particlesJS("particles-js", {
-            "particles": {
-                "number": {
-                    "value": 80,
-                    "density": {
-                        "enable": true,
-                        "value_area": 800
-                    }
-                },
-                "color": {
-                    "value": "#ff0000"
-                },
-                "shape": {
-                    "type": "circle",
-                    "stroke": {
-                        "width": 0,
-                        "color": "#000000"
-                    },
-                    "polygon": {
-                        "nb_sides": 5
-                    }
-                },
-                "opacity": {
-                    "value": 0.5,
-                    "random": false,
-                    "anim": {
-                        "enable": false,
-                        "speed": 1,
-                        "opacity_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "size": {
-    "value": 3,
-    "random": true,
-    "anim": {
-        "enable": false,
-        "speed": 40,
-        "size_min": 0.1,
-        "sync": false
-    }
-},
-"line_linked": {
-    "enable": true,
-    "distance": 150,
-    "color": "#ffffff",
-    "opacity": 0.4,
-    "width": 1
-},
-"move": {
-    "enable": true,
-    "speed": 6,
-    "direction": "none",
-    "random": false,
-    "straight": false,
-    "out_mode": "out",
-    "bounce": false,
-    "attract": {
-        "enable": false,
-        "rotateX": 600,
-        "rotateY": 1200
-    }
-}
-},
-"interactivity": {
-    "detect_on": "canvas",
-    "events": {
-        "onhover": {
-            "enable": true,
-            "mode": "repulse"
-        },
-        "onclick": {
-            "enable": true,
-            "mode": "push"
-        },
-        "resize": true
-    },
-    "modes": {
-        "grab": {
-            "distance": 140,
-            "line_linked": {
-                "opacity": 1
-            }
-        },
-        "bubble": {
-            "distance": 400,
-            "size": 40,
-            "duration": 2,
-            "opacity": 8,
-            "speed": 3
-        },
-        "repulse": {
-            "distance": 200,
-            "duration": 0.4
-        },
-        "push": {
-            "particles_nb": 4
-        },
-        "remove": {
-            "particles_nb": 2
-        }
-    }
-},
-"retina_detect": true
-});
-</script>
-
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
+    <!-- Include custom JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+/* Global Styles */
+body {
+    background-color: #333; /* Dark background color */
+    color: #fff; /* Text color */
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+/* Header Styles */
+header {
+    text-align: center;
+}
+
+/* Card Styles */
+.card {
+    background-color: #444; /* Card background color */
+    border: none;
+    border-radius: 10px;
+}
+
+.card-header {
+    background-color: #343a40; /* Card header background color */
+    border-bottom: none;
+}
+
+.card-header .nav-link {
+    color: #fff; /* Tab link text color */
+    background-color: #343a40; /* Tab link background color */
+    border: none;
+    border-radius: 0;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+}
+
+.card-header .nav-link.active {
+    color: #fff; /* Active tab link text color */
+    background-color: #007bff; /* Active tab link background color */
+}
+
+.card-header .nav-link:hover {
+    background-color: #0056b3; /* Hovered tab link background color */
+}
+
+/* Form Input Styles */
+.form-control {
+    background-color: #343a40; /* Input field background color */
+    color: #fff; /* Input text color */
+    border: none;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+.form-control:focus {
+    background-color: #343a40; /* Focused input field background color */
+    color: #fff; /* Focused input text color */
+    border: none;
+    box-shadow: none;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #007bff; /* Primary button background color */
+    border: none;
+    transition: background-color 0.3s ease; /* Smooth transitions */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Hovered primary button background color */
+}
+
+/* Spinner Animation */
+.spinner-border {
+    color: #007bff; /* Spinner color */
+}
+
+/* Custom Animations (Add your own animations here) */
+@keyframes customAnimation {
+    0% {
+        /* Start state */
+    }
+    100% {
+        /* End state */
+    }
+}
+
+/* Dark Mode Toggle (Optional) */
+.dark-mode-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    z-index: 9999;
+    font-size: 24px;
+}
