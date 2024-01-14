@@ -1,4 +1,15 @@
-web3 = new Web3(window.ethereum);
+// Check if Web3 has been injected by the browser (Mist/MetaMask)
+if (typeof web3 !== "undefined") {
+  // Use Mist/MetaMask's provider
+  web3 = new Web3(window.ethereum);
+  await window.ethereum.enable();
+} else {
+  console.log("No web3? You should consider trying MetaMask!");
+  // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
+  web3 = new Web3(
+    new Web3.providers.HttpProvider("https://rpc-mumbai.maticvigil.com:80001")
+  );
+}
 
 // Your contract ABI and address
 const contractABI = [
